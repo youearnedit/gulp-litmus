@@ -2,7 +2,7 @@
 var gutil = require('gulp-util');
 var es = require('event-stream');
 var Litmus = require('./lib/litmus');
-var cheerio = require('cheerio');
+// var cheerio = require('cheerio');
 var dateFormat = require('dateformat');
 
 
@@ -31,14 +31,14 @@ function sendLitmus(options){
 		if (file.isBuffer()) {
 			litmus = new Litmus(options);
 
-			html = file.contents;    
-	    $ = cheerio.load(html);
-	    title = $('title').text().trim();
-
-	    if (title.length === 0) { title = date; }
+			html = file.contents;
+	    // $ = cheerio.load(html);
+	    // title = $('title').text().trim();
+      // 
+	    // if (title.length === 0) { title = date; }
 	    
 	    // Send Litmus test
-	    litmus.run(html, title);
+	    litmus.run(html, file.relative);
 		}
 
     cb(null, file);
